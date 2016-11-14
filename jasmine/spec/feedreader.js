@@ -73,33 +73,41 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
-        // it('displays when clicked', function() {
-        //     expect
+        beforeEach(function() {
+             $('.menu-icon-link').trigger('click');
+        });
+        it('displays when clicked', function() {
+            expect($('.slide-menu').is(':hidden')).not.toBe(true);
+        });
 
-        // });
 
+        beforeEach(function() {
+             $('.menu-icon-link').trigger('click');
+        });
+         it('hides when clicked again', function() {
+            expect($('.slide-menu').is(':hidden')).toBe(false);
+         });
 
-
-        //  it('hides when clicked again', function() {
-
-        //  });
     });
+
     /* TODO: Write a new test suite named "Initial Entries" */
-   // describe('Initial Entries', function() {
+   describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-    // beforeEach(function(done) {
-    //     loadFeed
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
 
-    // it('show 1/++ entries', function() {
-    //     var totalEntries = $('.feed .entry').length;
-    //     expect(totalEntries).toBeGreaterThan(0);
-    //     });
-    // });
+        it('show 1 or more entries', function(done) {
+            var totalEntries = $('.feed .entry').length;
+            expect(totalEntries).toBeGreaterThan(0);
+            done();
+        });
+    });
 
 
     /* TODO: Write a new test suite named "New Feed Selection"
