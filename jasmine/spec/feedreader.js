@@ -62,8 +62,13 @@ $(function() {
          */
 
 //why is this working?
+        // it('is hidden by default', function() {
+        //     expect($('.slide-menu').is(':hidden')).toBe(false);
+
+        // });
+
         it('is hidden by default', function() {
-            expect($('.slide-menu').is(':hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
 
         });
 
@@ -73,19 +78,20 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
+          //change the expectations on these two before submitting!
         beforeEach(function() {
              $('.menu-icon-link').trigger('click');
         });
         it('displays when clicked', function() {
-            expect($('.slide-menu').is(':hidden')).not.toBe(true);
+            expect($('body').hasClass('menu-hidden')).not.toBe(true);
         });
 
-
+          //change the expectations on these two before submitting!
         beforeEach(function() {
              $('.menu-icon-link').trigger('click');
         });
          it('hides when clicked again', function() {
-            expect($('.slide-menu').is(':hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
 
     });
@@ -112,19 +118,22 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection"         */
     describe('New Feed Selection', function() {
-        var feedContents;
+        var feed1;
+        var feed2;
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
         beforeEach(function(done) {
             loadFeed(0, done);
-            feedContents = $('.feed').html();
+            feed1=$('.feed .entry').find('h2')[0].textContent;
+            feed2=$('.feed .entry').find('h2')[1].textContent;
         });
 
         it('shows new feed results', function(done) {
-            loadFeed(0);
-            expect($('.feed').html()).not.toEqual(feedContents);
+            expect(feed1).not.toEqual(feed2);
             done();
         });
+    });
 }());
