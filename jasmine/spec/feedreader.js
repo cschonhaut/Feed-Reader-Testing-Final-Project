@@ -61,12 +61,6 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
-//why is this working?
-        // it('is hidden by default', function() {
-        //     expect($('.slide-menu').is(':hidden')).toBe(false);
-
-        // });
-
         it('is hidden by default', function() {
             expect($('body').hasClass('menu-hidden')).toBe(true);
 
@@ -78,21 +72,15 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
-          //change the expectations on these two before submitting!
-        beforeEach(function() {
-             $('.menu-icon-link').trigger('click');
-        });
-        it('displays when clicked', function() {
-            expect($('body').hasClass('menu-hidden')).not.toBe(true);
+        it('displays when clicked', function(){
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
         });
 
-          //change the expectations on these two before submitting!
-        beforeEach(function() {
-             $('.menu-icon-link').trigger('click');
-        });
-         it('hides when clicked again', function() {
+        it('hides when clicked again', function(){
+            $('.menu-icon-link').click();
             expect($('body').hasClass('menu-hidden')).toBe(true);
-         });
+        });
 
     });
 
@@ -126,12 +114,14 @@ $(function() {
          */
 
         beforeEach(function(done) {
-            loadFeed(0, done);
-            feed1=$('.feed .entry').find('h2')[0].textContent;
-            feed2=$('.feed .entry').find('h2')[1].textContent;
+            loadFeed(0, function(){
+                feed1=$('.feed .entry').find('h2')[0].textContent;
+            });
+            loadFeed(1, done)
         });
 
         it('shows new feed results', function(done) {
+                feed2=$('.feed .entry').find('h2')[1].textContent;
             expect(feed1).not.toEqual(feed2);
             done();
         });
