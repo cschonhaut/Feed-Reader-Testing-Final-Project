@@ -114,8 +114,8 @@ $(function() {
 
         beforeEach(function(done) {
             loadFeed(0, function(){
-                loadFeed(1, done)
                 feed1=$('.feed .entry').find('h2')[0].textContent;
+                loadFeed(1, done)
             });
 
         });
