@@ -74,7 +74,7 @@ $(function() {
 
         it('displays when clicked', function(){
             $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).not.toBe(true);
         });
 
         it('hides when clicked again', function(){
