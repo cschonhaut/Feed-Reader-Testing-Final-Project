@@ -121,7 +121,7 @@ $(function() {
         });
 
         it('shows new feed results', function(done) {
-            feed2=$('.feed .entry').find('h2')[1].textContent;
+            feed2=$('.feed .entry').find('h2')[0].textContent;
                 expect(feed1).not.toEqual(feed2);
                 done();
         });
